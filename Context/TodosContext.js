@@ -32,7 +32,7 @@ const TodosProvider = ({children}) => {
         }
     };
 
-    const updateTodo = async (updatedTodo) => {
+    const updateTodos = async (updatedTodo) => {
         try {
             const res = await fetch('/api/updateTodo', {
                 method: 'PUT',
@@ -46,6 +46,21 @@ const TodosProvider = ({children}) => {
                     updatedTodo.id);
                 existingTodo.fields = updatedTodo.fields;
                 return existingTodos;
+            })
+        } catch (error) {
+            console.log(err);
+        }
+    };
+
+    const deleteTodo = async (id) => {
+        try {
+            const res = await fetch('/api/deleteTodo', {
+                method: 'DELETE',
+                body: JSON.stringify(id),
+                headers: {'Content=Type': 'application/json'}
+            });
+            setTodos((prevTodos) => {
+                return prevTodos.filter((todo) => todo.id !== id );
             })
         } catch (error) {
             console.log(err);
