@@ -10,5 +10,4 @@ export default async (req, res) => {
     res.statusCode = 500;
     rec.json({ msg: 'Something went wrong'});
   }
-
   };
