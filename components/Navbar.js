@@ -3,7 +3,7 @@ import React from 'react';
 function Navbar() {
     return (
         <nav className="flex justify-between items-center py-4">
-            <p class="text-2xl font-bold text-grey-800">My Todos</p>
+            <p className="text-2xl font-bold text-grey-800">My Todos</p>
             <div className="flex">
                 <a href="/api/logout"
                     className="rounded bg-blue-500 hover:bg-blue-600
