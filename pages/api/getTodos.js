@@ -1,26 +1,14 @@
-const Airtable = require('airtable');
-const base = new Airtable({apiKey: process.env.AIRTABLE_API_KEY }).base(process.env.AIRTABLE_BASE_ID);
-
-const table = base(process.env.AIRTABLE_TABLE_NAME);
-
-
-const minifyRecords = (records) => {
-  return records.map(record => getMinifiedRecords(record))
-}
-
-const getMinifiedRecords = (record) => {
-  if (!record.fields.completed){
-      record.fields.completed = false;
-  }
-  return {
-    id: record.id,
-    fields: record.fields
-  }
-}
+import { table, minifyRecords } from './utils/Airtable';
 
 export default async (req, res) => {
+  try{
     const records = await table.select({}).firstPage();
     const minifiedRecords = minifyRecords(records);
-    res.statusCode = 200
+    res.statusCode = 200;
     res.json(minifiedRecords);
+  }catch(err){
+    res.statusCode = 500;
+    rec.json({ msg: 'Something went wrong'});
+  }
+
   };
