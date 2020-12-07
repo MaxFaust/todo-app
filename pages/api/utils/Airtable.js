@@ -5,7 +5,7 @@ const table = base(process.env.AIRTABLE_TABLE_NAME);
 
 const minifyRecords = (records) => {
   return records.map(record => getMinifiedRecord(record))
-}
+};
 
 const getMinifiedRecord = (record) => {
   if (!record.fields.completed){
@@ -15,6 +15,7 @@ const getMinifiedRecord = (record) => {
     id: record.id,
     fields: record.fields
   }
-}
+};
+
 
 export {table, getMinifiedRecord, minifyRecords};

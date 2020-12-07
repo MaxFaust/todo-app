@@ -6,7 +6,6 @@ import { TodosContext } from '../Context/TodosContext';
 import { useEffect, useContext } from 'react';
 
 export default function Home({initialTodos}) {
-  // console.log(initialTodos);
   const { todos, setTodos } = useContext(TodosContext);
 
   useEffect(() => {

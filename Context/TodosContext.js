@@ -21,7 +21,7 @@ const TodosProvider = ({children}) => {
             const res = await fetch('/api/createTodo', {
                 method: 'POST',
                 body: JSON.stringify({description}),
-                headers: {'Content=Type': 'application/json'}
+                headers: {'Content-Type': 'application/json'}
             });
             const latestTodos = await res.json();
             setTodos((prevTodos) => {
@@ -32,12 +32,12 @@ const TodosProvider = ({children}) => {
         }
     };
 
-    const updateTodos = async (updatedTodo) => {
+    const updateTodo = async (updatedTodo) => {
         try {
             const res = await fetch('/api/updateTodo', {
                 method: 'PUT',
                 body: JSON.stringify(updatedTodo),
-                headers: {'Content=Type': 'application/json'}
+                headers: {'Content-Type': 'application/json'}
             });
             await res.json();
             setTodos((prevTodos) => {
@@ -47,7 +47,7 @@ const TodosProvider = ({children}) => {
                 existingTodo.fields = updatedTodo.fields;
                 return existingTodos;
             })
-        } catch (error) {
+        } catch (err) {
             console.log(err);
         }
     };
@@ -56,13 +56,13 @@ const TodosProvider = ({children}) => {
         try {
             const res = await fetch('/api/deleteTodo', {
                 method: 'DELETE',
-                body: JSON.stringify(id),
-                headers: {'Content=Type': 'application/json'}
+                body: JSON.stringify({id}),
+                headers: {'Content-Type': 'application/json'}
             });
             setTodos((prevTodos) => {
                 return prevTodos.filter((todo) => todo.id !== id );
             })
-        } catch (error) {
+        } catch (err) {
             console.log(err);
         }
     }
@@ -71,7 +71,7 @@ const TodosProvider = ({children}) => {
                     todos,
                     setTodos,
                     refreshTodos,
-                    updateTodos,
+                    updateTodo,
                     deleteTodo,
                     addTodo
                 }}>
