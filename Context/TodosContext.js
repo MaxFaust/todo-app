@@ -23,7 +23,7 @@ const TodosProvider = ({children}) => {
                 body: JSON.stringify({description}),
                 headers: {'Content-Type': 'application/json'}
             });
-            const latestTodos = await res.json();
+            const newTodo = await res.json();
             setTodos((prevTodos) => {
                 return [ newTodo, ...prevTodos]
             })
