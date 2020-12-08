@@ -1,6 +1,6 @@
 import { table } from './utils/Airtable';
-
-export default async (req, res) => {
+import auth0 from './utils/auth0';
+export default auth0.requireAuthentication ( async (req, res) => {
     const {description} = req.body;
   try{
     const createdRecords = await table.create([
@@ -17,4 +17,4 @@ export default async (req, res) => {
     res.statusCode = 500;
     res.json({ msg: 'Something went wrong'});
   }
-};
+});
