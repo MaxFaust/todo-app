@@ -3,7 +3,7 @@ import { TodosContext } from "../Context/TodosContext";
 
 export default function TodoForm() {
     const [todo, setTodo] = useState('');
-    const {addTodo} = useContext(TodosContext)
+    const { addTodo } = useContext(TodosContext)
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -14,8 +14,10 @@ export default function TodoForm() {
         <form className="form my-6" onSubmit={handleSubmit}>
             <div className="flex flex-col text-sm mb-2">
                 <label className="font-bold mb-2 text-grey-800"
-                        htmlFor = "todo">Todo</label>
-                <input type = "text" 
+                        htmlFor = "todo">
+                        Todo
+                </label>
+                <input type="text" 
                         name="todo" 
                         id="todo" 
                         value={todo}

@@ -3,9 +3,6 @@ const base = new Airtable({apiKey: process.env.AIRTABLE_API_KEY }).base(process.
 
 const table = base(process.env.AIRTABLE_TABLE_NAME);
 
-const minifyRecords = (records) => {
-  return records.map(record => getMinifiedRecord(record))
-};
 
 const getMinifiedRecord = (record) => {
   if (!record.fields.completed){
@@ -16,6 +13,11 @@ const getMinifiedRecord = (record) => {
     fields: record.fields
   }
 };
+
+const minifyRecords = (records) => {
+  return records.map((record) => getMinifiedRecord(record))
+};
+
 
 
 export {table, getMinifiedRecord, minifyRecords};
