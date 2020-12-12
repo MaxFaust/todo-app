@@ -33,7 +33,7 @@ export default function Home({ initialTodos, user }) {
               </ul>
           </>
         )}
-
+      {!user && <p> Log in to see your TODOs</p>}
       </main>
 
       <footer >
